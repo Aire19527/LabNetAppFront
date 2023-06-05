@@ -16,11 +16,11 @@
         <button routerLink="/home" mat-raised-button style="margin:5px" color="primary">
           <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
         </button>
-        <button routerLink="/profile/consult-profile/{{idUser}}" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Ver Perfil</button>
-        <button routerLink="/user/consult" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Consultar Usuario</button>
-        <button routerLink="/profile/filter-profile" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Filtro de Perfil</button>
-        <button routerLink="/skill/consult" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Consultar Skill</button>
-        <button (click)="logout()" routerLink="/login" mat-raised-button style="margin:5px" style="margin:5px" color="primary" class="log-out-button">
+        <button routerLink="/profile/consult-profile/{{idUser}}" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Ver Perfil {{ idUser }}</button>
+        <button *ngIf="idUser == 2" routerLink="/user/consult" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Consultar Usuario</button>
+        <button *ngIf="idUser == 2" routerLink="/profile/filter-profile" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Filtro de Perfil</button>
+        <button *ngIf="idUser == 2" routerLink="/skill/consult" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Consultar Skill</button>
+        <button *ngIf="idUser == 2" (click)="logout()" routerLink="/login" mat-raised-button style="margin:5px" style="margin:5px" color="primary" class="log-out-button">
           <mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>
         </button>
       </mat-drawer>
