@@ -13,12 +13,15 @@
     <mat-drawer #drawer class="example-sidenav" mode="side">
       
       <img src="../assets/logo_neoris.png" alt="foto-perfil" class="foto-perfil">
-        <button routerLink="/home" mat-raised-button style="margin:5px" color="primary" class="home-out-button">
+        <button routerLink="/home" mat-raised-button style="margin:5px" color="primary">
           <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
         </button>
-
-        <button (click)="logout()" routerLink="/login" mat-raised-button style="margin:5px" color="primary" class="log-out-button">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" >logout</mat-icon>
+        <button routerLink="/profile/consult-profile/{{idUser}}" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Ver Perfil</button>
+        <button routerLink="/user/consult" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Consultar Usuario</button>
+        <button routerLink="/profile/filter-profile" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Filtro de Perfil</button>
+        <button routerLink="/skill/consult" mat-raised-button style="margin:5px" color="primary" mat-dialog-close>Consultar Skill</button>
+        <button (click)="logout()" routerLink="/login" mat-raised-button style="margin:5px" style="margin:5px" color="primary" class="log-out-button">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>
         </button>
       </mat-drawer>
 
