@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiLab: 'https://localhost:7059/api/'
+  //apiLab: 'https://localhost:7059/api/'
+  apiLab: 'http://arrosvmapp339:82/api/',
 };
 
 /*
