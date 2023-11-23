@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Login } from "../models/login";
+import { Login } from '../models/login';
 import { ResponseDto } from '../models/response';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AuthService {
-
-  url: string = "https://localhost:7059/api/login";
+  private urlApi: string = `${environment.apiLab}${environment.serviceLogin}`;
   userToken: string = '';
 
   constructor(private http: HttpClient) {
-    this.readToken()
+    this.readToken();
   }
-
 
   logout() {
     if (localStorage.getItem('token')) {
@@ -26,13 +24,12 @@ export class AuthService {
   }
 
   login(user: Login) {
-    return this.http.post<ResponseDto>(`${this.url}/login`, user)
-      .pipe(
-        map(resp => {
-          this.saveToken(resp["result"].token, resp["result"].expiration);
-          return resp;
-        })
-      );
+    return this.http.post<ResponseDto>(`${this.urlApi}/Login`, user).pipe(
+      map((resp) => {
+        this.saveToken(resp['result'].token, resp['result'].expiration);
+        return resp;
+      })
+    );
   }
 
   saveToken(idToken: string, expiresIn: number) {
@@ -69,9 +66,9 @@ export class AuthService {
     return response;
   }
 
-  DecodeJWT(token: string): JSON{
-    const decodedToken =  atob(token.split('.')[1]);
-    const decodedObject =JSON.parse(decodedToken);
+  DecodeJWT(token: string): JSON {
+    const decodedToken = atob(token.split('.')[1]);
+    const decodedObject = JSON.parse(decodedToken);
     return decodedObject;
   }
 
@@ -82,4 +79,3 @@ export class AuthService {
     return null;
   };
 }
-

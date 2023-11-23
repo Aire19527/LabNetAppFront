@@ -13,99 +13,103 @@ import { AuthService } from './auth.service';
 import { profileFileDto } from '../models/Profile/profileFileDto';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProfilesService {
   apiUrl: string = environment.apiLab;
   endPoint: string = 'Profile';
 
-  constructor(private http: HttpClient,
-    private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   public FilterBySkills(ListId: number[]): Observable<ResponseDto> {
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
-    let url = this.apiUrl + this.endPoint + "/FilterSkills?";
-    ListId.forEach(id => url += `skills=${id}&`)
+    let url = this.apiUrl + this.endPoint + '/FilterSkills?';
+    ListId.forEach((id) => (url += `skills=${id}&`));
 
-    return this.http.get<ResponseDto>(url,options);
+    return this.http.get<ResponseDto>(url, options);
   }
 
-  public AddSkillToProfile(ProfileSkill: AddProfileSkillDto): Observable<ResponseDto> {
+  public AddSkillToProfile(
+    ProfileSkill: AddProfileSkillDto
+  ): Observable<ResponseDto> {
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
-    let url = this.apiUrl + this.endPoint + "/AddSkillToProfile";
-    return this.http.post<ResponseDto>(url, ProfileSkill,options);
+    let url = this.apiUrl + this.endPoint + '/AddSkillToProfile';
+    return this.http.post<ResponseDto>(url, ProfileSkill, options);
   }
 
-
-  public deleteEmploye(idProfile: number, idSkill: number): Observable<ResponseDto> {
+  public deleteEmploye(
+    idProfile: number,
+    idSkill: number
+  ): Observable<ResponseDto> {
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
-    let url = this.apiUrl + this.endPoint + `/DeleteSkillToProfile/${idProfile}/${idSkill}`;
-    return this.http.delete<ResponseDto>(url,options);
+    let url =
+      this.apiUrl +
+      this.endPoint +
+      `/DeleteSkillToProfile/${idProfile}/${idSkill}`;
+    return this.http.delete<ResponseDto>(url, options);
   }
 
   public GetProfileSkill(id: number): Observable<ResponseDto> {
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
     let url = this.apiUrl + this.endPoint + `/GetProfileSkill/${id}`;
-    return this.http.get<ResponseDto>(url,options);
+    return this.http.get<ResponseDto>(url, options);
   }
-
 
   //PROFILE
 
   public InsertProfile(Profile: profileDto): Observable<ResponseDto> {
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
-    let url = this.apiUrl + this.endPoint + "/Insert"
+    let url = this.apiUrl + this.endPoint + '/Insert';
     return this.http.post<ResponseDto>(url, Profile, options);
   }
 
   public GetById(id: number): Observable<ResponseDto> {
-
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
-    let url = `${this.apiUrl}${this.endPoint}${"/Get/"}${id}`;
+    let url = `${this.apiUrl}${this.endPoint}${'/Get/'}${id}`;
     return this.http.get<ResponseDto>(url, options);
   }
 
   public EditProfile(Profile: profileEditDto): Observable<ResponseDto> {
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
-    let url = this.apiUrl + this.endPoint + "/Update";
+    let url = this.apiUrl + this.endPoint + '/Update';
     return this.http.put<ResponseDto>(url, Profile, options);
   }
 
-  public UploadImage(ProfileFile: FormData) : Observable<ResponseDto>{
+  public UploadImage(ProfileFile: FormData): Observable<ResponseDto> {
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
-    let url = this.apiUrl + this.endPoint + "/UpdateImage";
+    let url = this.apiUrl + this.endPoint + '/UpdateImage';
     return this.http.put<ResponseDto>(url, ProfileFile, options);
   }
 
-  public UploadResumee(ProfileFile: FormData) : Observable<ResponseDto>{
+  public UploadResumee(ProfileFile: FormData): Observable<ResponseDto> {
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
-    let url = this.apiUrl + this.endPoint + "/UpdateResumee";
+    let url = this.apiUrl + this.endPoint + '/UpdateResumee';
     return this.http.put<ResponseDto>(url, ProfileFile, options);
   }
 
   public HasProfile(id: number): Observable<ResponseDto> {
     const userToken = `Bearer ${this.authService.readToken()}`;
-    const headers = new HttpHeaders({ 'Authorization': userToken });
+    const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
-    let url = this.apiUrl + this.endPoint + "/HasProfile?idUser=" + id;
+    let url = this.apiUrl + this.endPoint + '/HasProfile?idUser=' + id;
     return this.http.get<ResponseDto>(url, options);
   }
 }

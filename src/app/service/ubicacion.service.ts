@@ -8,11 +8,8 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root',
 })
-
-// https://localhost:7059/api/Ubication/GetAll
 export class UbicacionService {
-  apiUrl: string = environment.apiLab;
-  endPoint: string = 'Ubication';
+  private urlApi: string = `${environment.apiLab}${environment.serviceUbication}`;
 
   constructor(private http: HttpClient, private _authservice: AuthService) {}
 
@@ -21,7 +18,7 @@ export class UbicacionService {
     const headers = new HttpHeaders({ Authorization: userToken });
     const options = { headers: headers };
 
-    let url = `${this.apiUrl}${this.endPoint}/GetAll`;
+    let url = `${this.urlApi}/GetAll`;
     return this.http.get<ResponseDto>(url, options);
   }
 }

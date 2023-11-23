@@ -1,20 +1,18 @@
-import { ResponseDto } from "../models/response";
-import { Injectable } from "@angular/core";
-import {HttpClient} from '@angular/common/http';
-import { Observable } from "rxjs";
+import { ResponseDto } from '../models/response';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoleService {
-    
-    constructor(private http: HttpClient){ }
+  private urlApi: string = `${environment.apiLab}${environment.serviceRol}`;
 
-    url: string = "https://localhost:7059/api/role";
+  constructor(private http: HttpClient) {}
 
-    getRole(){
-        
-        return this.http.get<ResponseDto>(this.url + '/GetAll');
-    }
-
+  getRole() {
+    return this.http.get<ResponseDto>(this.urlApi + '/GetAll');
+  }
 }
